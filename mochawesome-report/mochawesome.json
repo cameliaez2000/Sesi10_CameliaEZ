@@ -1,0 +1,157 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 2,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-08-21T11:43:17.186Z",
+    "end": "2025-08-21T11:43:23.877Z",
+    "duration": 6691,
+    "testsRegistered": 2,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "7b912aeb-80b8-49f4-9b68-81b885251ac4",
+      "title": "",
+      "fullFile": "C:\\Users\\Cevio\\Downloads\\SESI_10\\tests\\sesi-10\\test_sesi10.js",
+      "file": "\\tests\\sesi-10\\test_sesi10.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "97ec8cbf-d6cd-408c-a4ed-ab657798ff52",
+          "title": "SauceDemo Test Suite",
+          "fullFile": "C:\\Users\\Cevio\\Downloads\\SESI_10\\tests\\sesi-10\\test_sesi10.js",
+          "file": "\\tests\\sesi-10\\test_sesi10.js",
+          "beforeHooks": [
+            {
+              "title": "\"before each\" hook in \"SauceDemo Test Suite\"",
+              "fullTitle": "SauceDemo Test Suite \"before each\" hook in \"SauceDemo Test Suite\"",
+              "timedOut": false,
+              "duration": 2439,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "let options = new chrome.Options();\noptions.addArguments('--incognito');\ndriver = await new Builder().forBrowser('chrome').setChromeOptions(options).build();\n// Action Login\nawait driver.get('https://www.saucedemo.com');\nawait driver.findElement(By.css('[data-test=\"username\"]')).sendKeys('standard_user');\nawait driver.findElement(By.xpath('//*[@data-test=\"password\"]')).sendKeys('secret_sauce');\nawait driver.findElement(By.className('submit-button btn_action')).click();",
+              "err": {},
+              "uuid": "e1e9c215-d653-4c31-8f42-15b9a6fe9c33",
+              "parentUUID": "97ec8cbf-d6cd-408c-a4ed-ab657798ff52",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after each\" hook in \"SauceDemo Test Suite\"",
+              "fullTitle": "SauceDemo Test Suite \"after each\" hook in \"SauceDemo Test Suite\"",
+              "timedOut": false,
+              "duration": 155,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "if (driver) {\n    await driver.quit();\n}",
+              "err": {},
+              "uuid": "e535a6cc-0539-4929-8e0b-7e4376dac13f",
+              "parentUUID": "97ec8cbf-d6cd-408c-a4ed-ab657798ff52",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "Harus berhasil login dan memvalidasi elemen keranjang belanja dan judul halaman",
+              "fullTitle": "SauceDemo Test Suite Harus berhasil login dan memvalidasi elemen keranjang belanja dan judul halaman",
+              "timedOut": false,
+              "duration": 138,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "let buttonCart = await driver.wait(\n    until.elementLocated(By.xpath('//*[@data-test=\"shopping-cart-link\"]')),\n    10000 \n);\nawait driver.wait(until.elementIsVisible(buttonCart), 5000, 'Shopping cart harus tampil');\nawait buttonCart.isDisplayed();\nlet textAppLogo = await driver.findElement(By.className('app_logo'));\nlet logotext = await textAppLogo.getText();\nassert.strictEqual(logotext, 'Swag Labs');",
+              "err": {},
+              "uuid": "3a493482-45ad-48f6-a2d9-2750dec0c2dc",
+              "parentUUID": "97ec8cbf-d6cd-408c-a4ed-ab657798ff52",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Harus mengurutkan produk dari A-Z dan memvalidasi urutannya",
+              "fullTitle": "SauceDemo Test Suite Harus mengurutkan produk dari A-Z dan memvalidasi urutannya",
+              "timedOut": false,
+              "duration": 1330,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "let productNamesBeforeSort = await driver.findElements(By.className('inventory_item_name'));\nlet namesBefore = await Promise.all(productNamesBeforeSort.map(async (element) => {\n    return await element.getText();\n}));\nlet dropdown = await driver.findElement(By.className('product_sort_container'));\nawait dropdown.findElement(By.xpath('//option[@value=\"az\"]')).click();\nawait driver.sleep(1000); \nlet productNamesAfterSort = await driver.findElements(By.className('inventory_item_name'));\nlet namesAfter = await Promise.all(productNamesAfterSort.map(async (element) => {\n    return await element.getText();\n}));\nlet expectedSortedNames = [...namesBefore].sort();\nassert.deepStrictEqual(namesAfter, expectedSortedNames);\nconsole.log(\"Pengurutan produk berhasil!\");",
+              "err": {},
+              "uuid": "8e4db7f9-4658-4479-b96d-b186df2e5c64",
+              "parentUUID": "97ec8cbf-d6cd-408c-a4ed-ab657798ff52",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "3a493482-45ad-48f6-a2d9-2750dec0c2dc",
+            "8e4db7f9-4658-4479-b96d-b186df2e5c64"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 1468,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 60000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 60000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "10.8.2"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.2.0"
+    }
+  }
+}
